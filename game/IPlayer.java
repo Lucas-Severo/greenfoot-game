@@ -4,9 +4,22 @@ public class IPlayer extends Actor implements Player
 {
     private int speed = 3;
     
+    public IPlayer() {
+    }
+    
+    public IPlayer(String image) {
+        GreenfootImage imagem = new GreenfootImage(image);
+        setImage(imagem);
+    }
+    
     public void act() 
     {
-        moves();
+        if(isSelected()) {
+            Greenfoot.setWorld(new GameWorld(this));
+        }
+        if(!(getWorld() instanceof SelecaoJogador)) {
+            moves();
+        }
     }
     
     public void moves() {
@@ -29,7 +42,8 @@ public class IPlayer extends Actor implements Player
     }
     
     public boolean isSelected() {
-        return Greenfoot.mouseClicked(this);
+        return getWorld() instanceof SelecaoJogador && 
+               Greenfoot.mouseClicked(this);
     }
     
     public void setSpeed(int speed) {
