@@ -1,2 +1,6 @@
 *.class
 *.ctxt
+*.html
+*.css
+*.js
+logfile.txt
