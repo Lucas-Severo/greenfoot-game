@@ -1,8 +1,8 @@
 import greenfoot.*;  
 
-public class Man extends IPlayer
+public class Medium extends IPlayer
 {
-    public Man() {
+    public Medium() {
         super("ppl2.png");
         setSpeed(4);
     } 

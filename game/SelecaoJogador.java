@@ -8,12 +8,25 @@ public class SelecaoJogador extends World
         GreenfootImage background = new GreenfootImage("", 20, Color.BLACK, Color.BLACK);
         setBackground(background);
         
-        Label lbSelecao = new Label("Selecione um personagem", 50);
-        addObject(lbSelecao, getWidth()/2, 43);
+        criarLabels();
         
         //Adicionando players para seleção
-        addObject(new Boy(), 145, 109);
-        addObject(new Man(), 299, 109);
-        addObject(new Snake(), 458, 109);
+        addObject(new Easy(), 145, 109);
+        addObject(new Medium(), 299, 109);
+        addObject(new Hard(), 458, 109);
+    }
+    
+    private void criarLabels() {
+        Label lbSelecao = new Label("Selecione a dificuldade", 50);
+        addObject(lbSelecao, getWidth()/2, 43);
+        
+        Label lbEasy = new Label("Easy", 30);
+        addObject(lbEasy, 145, 150);
+        
+        Label lbMedium = new Label("Medium", 30);
+        addObject(lbMedium, 299, 150);
+        
+        Label lbHard = new Label("Hard", 30);
+        addObject(lbHard, 458, 150);
     }
 }
