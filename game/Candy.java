@@ -1,4 +1,4 @@
-public interface Enemy  
+public interface Candy  
 {
     void move();
     void removeObject();

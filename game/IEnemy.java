@@ -18,7 +18,7 @@ public class IEnemy extends Actor implements Enemy
             IPlayer player = getPlayer();
             if(intersects(player)) {            
                 player.setLifes(player.getLifes()-1);
-                excluirObjeto();
+                removeObject();
                 return;
             }
             if(player.getLifes() == 0) {
@@ -27,28 +27,30 @@ public class IEnemy extends Actor implements Enemy
             }
         }
         if(isAtEdge()) {
-            excluirObjeto();
+            removeObject();
         }
     }
     
+    @Override
     public void move() {
         setLocation(getX(), getY() + speed);
     }
     
-    private int getRandomSpeed(){
-        return Greenfoot.getRandomNumber(10);
-    }
-        
-    private void excluirObjeto() {
+    @Override
+    public void removeObject() {
         getWorld().removeObject(this);
     }
     
+    private int getRandomSpeed(){
+        return Greenfoot.getRandomNumber(8);
+    }
+    
     private boolean hasPlayer() {
-        return getWorld().getObjects(IPlayer.class).size() > 0;
+        return getWorld().getObjects(Player.class).size() > 0;
     }
     
     private IPlayer getPlayer() {
-        return getWorld().getObjects(IPlayer.class).get(0);
+        return (IPlayer) getWorld().getObjects(Player.class).get(0);
     }
     
     private void showGameOverMessage() {
