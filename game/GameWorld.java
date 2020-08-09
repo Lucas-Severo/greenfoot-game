@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 public class GameWorld extends World
 {
-    private int max;
+    private int maxEnemies;
+    private int maxCandies;
     
     public GameWorld()
     {    
@@ -20,21 +21,27 @@ public class GameWorld extends World
     
     public void act() {
         int[] pos = getRandomPosition(getWidth(), getHeight());
-        if(getObjects(IEnemy.class).size() <= max) {
+        if(getObjects(Enemy.class).size() < maxEnemies) {
             addObject(createEnemy(), pos[0], pos[1]);
+        }
+        if(getObjects(Candy.class).size() < maxCandies) {
+            addObject(createCandy(), pos[0], pos[1]);
         }
     }
     
     private void selectDifficulty(IPlayer player) {
         if(player instanceof Easy) {
             showText("Easy", getWidth() - 40, 50);
-            max = 5;
+            maxEnemies = 5;
+            maxCandies = 2;
         } else if(player instanceof Medium) {
             showText("Medium", getWidth() - 40, 50);
-            max = 10;
+            maxEnemies = 10;
+            maxCandies = 1;
         } else {
             showText("Hard", getWidth() - 40, 50);
-            max = 15;
+            maxEnemies = 15;
+            maxCandies = 1;
         }
     }
     
@@ -46,6 +53,14 @@ public class GameWorld extends World
                 new Bomb()
             );
         return enemies.get(Greenfoot.getRandomNumber(enemies.size()));
+    }
+    
+    private ICandy createCandy() {
+        List<ICandy> candies = 
+            Arrays.asList(
+                new Cake()
+            );
+        return candies.get(Greenfoot.getRandomNumber(candies.size()));
     }
     
     private int[] getRandomPosition(int width, int height) {
