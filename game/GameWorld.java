@@ -27,13 +27,13 @@ public class GameWorld extends World
     
     private void selectDifficulty(IPlayer player) {
         if(player instanceof Easy) {
-            showText("Easy", getWidth() - 100, 20);
+            showText("Easy", getWidth() - 40, 50);
             max = 5;
         } else if(player instanceof Medium) {
-            showText("Medium", getWidth() - 100, 20);
+            showText("Medium", getWidth() - 40, 50);
             max = 10;
         } else {
-            showText("Hard", getWidth() - 100, 20);
+            showText("Hard", getWidth() - 40, 50);
             max = 15;
         }
     }
