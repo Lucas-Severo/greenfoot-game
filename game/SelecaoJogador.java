@@ -10,7 +10,7 @@ public class SelecaoJogador extends World
         
         criarLabels();
         
-        //Adicionando players para seleção
+        //Adicionando players para seleÃ§Äƒo
         addObject(new Easy(), 145, 109);
         addObject(new Medium(), 299, 109);
         addObject(new Hard(), 458, 109);
