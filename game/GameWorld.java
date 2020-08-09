@@ -9,12 +9,14 @@ public class GameWorld extends World
     
     public GameWorld()
     {    
-        super(600, 400, 1); 
+        super(600, 400, 1);
+        Counter counter = new Counter("Doces coletados: ");
+        addObject(counter, counter.getWidth() + 80, 30);
     }
     
     public GameWorld(IPlayer player)
     {    
-        super(600, 400, 1);
+        this();
         addObject(player, getWidth()/2, 367);
         selectDifficulty(player);
     }
