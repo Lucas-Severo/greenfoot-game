@@ -19,6 +19,8 @@ public class IPlayer extends Actor implements Player
             Greenfoot.setWorld(new GameWorld(this));
         }
         if(!(getWorld() instanceof SelecaoJogador)) {
+            checkIfLost();
+            checkIfWin();
             moves();
             showLifes();
         }
@@ -83,5 +85,47 @@ public class IPlayer extends Actor implements Player
                 getWorld().removeObject(heart);
             }
         }
+    }
+    
+    private Counter getCounter() {
+        return getWorld().getObjects(Counter.class).get(0);
+    }
+    
+    private void checkIfLost() {
+        if(lifes <= 0) {
+            showGameOverMessage();
+            backToHome();
+        }
+    }
+    
+    private void checkIfWin() {
+        if(getCounter().getScore() == 10) {
+            showWinMessage();
+            backToHome();
+        }
+    }
+    
+    private void showGameOverMessage() {
+        Label lbGameOver = new Label("Game Over", 40);
+                getWorld().addObject(
+                    lbGameOver, 
+                    getWorld().getWidth()/2,
+                    getWorld().getHeight()/2
+                );
+        Greenfoot.delay(100);
+    }
+    
+    private void showWinMessage() {
+        Label lbGameOver = new Label("You Win!", 40);
+                getWorld().addObject(
+                    lbGameOver, 
+                    getWorld().getWidth()/2,
+                    getWorld().getHeight()/2
+                );
+        Greenfoot.delay(100);
+    }
+    
+    private void backToHome() {
+        Greenfoot.setWorld(new SelecaoJogador());
     }
 }

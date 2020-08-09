@@ -14,6 +14,7 @@ public class ICandy extends Actor implements Candy
         if(hasPlayer()) {
             IPlayer player = getPlayer();
             if(intersects(player)) {
+                addCounter();
                 removeObject();
                 return;
             }
@@ -39,6 +40,14 @@ public class ICandy extends Actor implements Candy
     
     private int getRandomSpeed(){
         return Greenfoot.getRandomNumber(8);
+    }
+    
+    private Counter getCounter() {
+        return getWorld().getObjects(Counter.class).get(0);
+    }
+    
+    private void addCounter() {
+        getCounter().add();
     }
     
     private void checkIfIsAtEdge() {
