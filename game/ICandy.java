@@ -1,51 +1,58 @@
 import greenfoot.*;
 
-/**
- * @author Lucas
- */
-public class IEnemy extends Actor implements Enemy
+public class ICandy extends Actor implements Candy
 {
     private int speed;
-
-    public IEnemy() {
+    
+    public ICandy() {
         speed = getRandomSpeed();
     }
-
-    public void act()
+    
+    public void act() 
     {
         move();
         if(hasPlayer()) {
             IPlayer player = getPlayer();
             if(intersects(player)) {
-                player.setLifes(player.getLifes()-1);
+                addCounter();
                 removeObject();
                 return;
             }
         }
-        if(isAtEdge()) {
-            removeObject();
-        }
-    }
-
-    @Override
+        checkIfIsAtEdge();
+    }    
+    
     public void move() {
         setLocation(getX(), getY() + speed);
     }
-
-    @Override
+    
     public void removeObject() {
         getWorld().removeObject(this);
     }
-
-    private int getRandomSpeed(){
-        return Greenfoot.getRandomNumber(8);
-    }
-
+    
     private boolean hasPlayer() {
         return getWorld().getObjects(Player.class).size() > 0;
     }
-
+    
     private IPlayer getPlayer() {
         return (IPlayer) getWorld().getObjects(Player.class).get(0);
+    }
+    
+    private int getRandomSpeed(){
+        return Greenfoot.getRandomNumber(8);
+    }
+    
+    private Counter getCounter() {
+        return getWorld().getObjects(Counter.class).get(0);
+    }
+    
+    private void addCounter() {
+        getCounter().add();
+    }
+    
+    private void checkIfIsAtEdge() {
+        if(isAtEdge()) {
+            removeObject();
+        }
     }
 }
