@@ -16,12 +16,19 @@ public class IEnemy extends Actor implements Enemy
         move();
         if(hasPlayer()) {
             IPlayer player = getPlayer();
-            if(intersects(player)) {
+            if(intersects(player)) {            
+                player.setLifes(player.getLifes()-1);
+                excluirObjeto();
+                return;
+            }
+            if(player.getLifes() == 0) {
                 showGameOverMessage();
                 backToHome();
             }
         }
-        excluirObjeto();
+        if(isAtEdge()) {
+            excluirObjeto();
+        }
     }
     
     public void move() {
@@ -31,11 +38,9 @@ public class IEnemy extends Actor implements Enemy
     private int getRandomSpeed(){
         return Greenfoot.getRandomNumber(10);
     }
-    
+        
     private void excluirObjeto() {
-        if(isAtEdge()) {
-            getWorld().removeObject(this);
-        }
+        getWorld().removeObject(this);
     }
     
     private boolean hasPlayer() {
