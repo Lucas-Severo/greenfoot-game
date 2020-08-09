@@ -18,9 +18,7 @@ public class ICandy extends Actor implements Candy
                 return;
             }
         }
-        if(isAtEdge()) {
-            removeObject();
-        }
+        checkIfIsAtEdge();
     }    
     
     public void move() {
@@ -41,5 +39,11 @@ public class ICandy extends Actor implements Candy
     
     private int getRandomSpeed(){
         return Greenfoot.getRandomNumber(8);
+    }
+    
+    private void checkIfIsAtEdge() {
+        if(isAtEdge()) {
+            removeObject();
+        }
     }
 }
